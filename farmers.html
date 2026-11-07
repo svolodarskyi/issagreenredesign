@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Farmers | Issa Green</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    /* ─── TOKENS ─────────────────────────────────────────── */
+    :root {
+      --ink:       #1C2B1A;
+      --sage:      #7A9B6E;
+      --slate:     #748092;
+      --stone:     #F0EDE6;
+      --mist:      #EEF0EB;
+      --offwhite:  #FAFAF7;
+      --mid:       #5C5C5C;
+      --light:     #8F8F8F;
+      --rule:      rgba(28,43,26,0.12);
+
+      --display:   'Amiri', Georgia, serif;
+      --body:      'DM Sans', system-ui, sans-serif;
+
+      --max:       1200px;
+      --pad:       clamp(24px, 5vw, 80px);
+      --section-v: clamp(60px, 8vw, 120px);
+
+      --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--body);
+      background: var(--offwhite);
+      color: var(--ink);
+      font-weight: 300;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { display: block; max-width: 100%; }
+    a   { text-decoration: none; color: inherit; }
+
+    /* ─── SCROLL REVEAL ──────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.75s var(--ease), transform 0.75s var(--ease);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+    .reveal-delay-1 { transition-delay: 0.12s; }
+    .reveal-delay-2 { transition-delay: 0.24s; }
+    .reveal-delay-3 { transition-delay: 0.36s; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+    }
+
+    /* ─── ANNOUNCEMENT BAR ───────────────────────────────── */
+    .topbar {
+      background: var(--ink);
+      color: rgba(255,255,255,0.75);
+      text-align: center;
+      font-size: 11.5px;
+      letter-spacing: 0.09em;
+      padding: 9px 20px;
+      font-family: var(--body);
+    }
+
+    /* ─── HEADER ─────────────────────────────────────────── */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      background: rgba(250,250,247,0.95);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .header-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 var(--pad);
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .logo {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.15;
+      flex-shrink: 0;
+    }
+    .logo-name {
+      font-family: var(--body);
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      color: var(--ink);
+      text-transform: uppercase;
+    }
+    .logo-sub {
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--light);
+      text-transform: uppercase;
+      margin-top: 1px;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+    nav a {
+      font-size: 12px;
+      letter-spacing: 0.09em;
+      color: var(--mid);
+      text-transform: uppercase;
+      transition: color 0.2s;
+      position: relative;
+    }
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -3px; left: 0;
+      width: 0; height: 1px;
+      background: var(--sage);
+      transition: width 0.25s var(--ease);
+    }
+    nav a:hover { color: var(--ink); }
+    nav a:hover::after { width: 100%; }
+    nav a.active { color: var(--ink); font-weight: 400; }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 768px) {
+      nav { display: none; }
+    }
+
+    /* ─── HERO ───────────────────────────────────────────── */
+    .hero {
+      position: relative;
+      background: var(--stone);
+      height: clamp(400px, 60vh, 600px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to bottom, rgba(28,43,26,0.3), rgba(28,43,26,0.5)),
+        url('https://static.wixstatic.com/media/556961_875d05aaa897408abede7dcebc5c83da~mv2.jpg/v1/fill/w_1920,h_1080,al_c,q_90/556961_875d05aaa897408abede7dcebc5c83da~mv2.jpg') center/cover;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      color: white;
+      max-width: 800px;
+      padding: 0 var(--pad);
+    }
+
+    .hero-eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0.9;
+      margin-bottom: 16px;
+    }
+
+    .hero-title {
+      font-family: var(--display);
+      font-size: clamp(42px, 7vw, 72px);
+      font-weight: 400;
+      line-height: 1.1;
+      margin-bottom: 16px;
+      font-style: italic;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(16px, 2.5vw, 20px);
+      opacity: 0.95;
+      font-weight: 300;
+      letter-spacing: 0.02em;
+    }
+
+    /* ─── SECTIONS ───────────────────────────────────────── */
+    .section-wrap {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: var(--section-v) var(--pad);
+    }
+
+    .section-label {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--light);
+      font-weight: 400;
+      margin-bottom: 20px;
+      display: inline-block;
+      position: relative;
+    }
+
+    .section-label::after {
+      content: '';
+      position: absolute;
+      left: 0; bottom: -6px;
+      width: 32px;
+      height: 1px;
+      background: var(--sage);
+    }
+
+    /* ─── INTRO SECTION ──────────────────────────────────── */
+    .intro-section {
+      background: var(--offwhite);
+      text-align: center;
+    }
+
+    .intro-section h2 {
+      font-family: var(--display);
+      font-size: clamp(32px, 5vw, 48px);
+      font-weight: 400;
+      line-height: 1.3;
+      margin-bottom: 32px;
+      color: var(--ink);
+    }
+
+    .intro-divider {
+      width: 60px;
+      height: 1px;
+      background: var(--sage);
+      margin: 32px auto;
+    }
+
+    .intro-lead {
+      font-size: clamp(18px, 2.5vw, 24px);
+      line-height: 1.6;
+      color: var(--mid);
+      max-width: 720px;
+      margin: 0 auto 24px;
+      font-weight: 400;
+    }
+
+    .intro-body {
+      font-size: clamp(15px, 2vw, 17px);
+      line-height: 1.75;
+      color: var(--mid);
+      max-width: 780px;
+      margin: 0 auto;
+    }
+
+    /* ─── FARM SECTIONS ──────────────────────────────────── */
+    .farm-section {
+      background: var(--mist);
+    }
+
+    .farm-section:nth-child(even) {
+      background: var(--offwhite);
+    }
+
+    .farm-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .farm-divider {
+      width: 80px;
+      height: 1px;
+      background: var(--sage);
+      margin: 0 auto 32px;
+    }
+
+    .farm-name {
+      font-family: var(--display);
+      font-size: clamp(36px, 5vw, 52px);
+      font-weight: 400;
+      line-height: 1.2;
+      margin-bottom: 8px;
+      color: var(--ink);
+      font-style: italic;
+    }
+
+    .farm-location {
+      font-size: 16px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--light);
+      font-weight: 400;
+    }
+
+    .farm-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(40px, 6vw, 80px);
+      align-items: start;
+    }
+
+    .farm-text p {
+      font-size: clamp(15px, 2vw, 17px);
+      line-height: 1.75;
+      color: var(--mid);
+      margin-bottom: 24px;
+    }
+
+    .farm-images {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .farm-img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      border-radius: 2px;
+    }
+
+    .farm-img.large {
+      grid-column: 1 / -1;
+      aspect-ratio: 16/11;
+    }
+
+    .farm-img.portrait {
+      grid-row: span 2;
+      aspect-ratio: 3/4;
+    }
+
+    .farm-img.landscape {
+      aspect-ratio: 16/11;
+    }
+
+    @media (max-width: 900px) {
+      .farm-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+    }
+
+    /* ─── CTA SECTION ────────────────────────────────────── */
+    .cta-section {
+      background: var(--stone);
+      text-align: center;
+    }
+
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 40px;
+      background: var(--ink);
+      color: white;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border-radius: 2px;
+      transition: all 0.3s var(--ease);
+      font-weight: 400;
+    }
+
+    .cta-btn:hover {
+      background: var(--sage);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .cta-btn svg {
+      width: 18px;
+      height: 18px;
+      stroke: currentColor;
+      stroke-width: 2;
+      fill: none;
+    }
+
+    .coming-soon {
+      font-family: var(--display);
+      font-size: clamp(28px, 4vw, 38px);
+      font-weight: 400;
+      color: var(--mid);
+      font-style: italic;
+    }
+
+    /* ─── FOOTER ─────────────────────────────────────────── */
+    footer {
+      background: var(--ink);
+      color: rgba(255,255,255,0.7);
+      padding: 60px var(--pad) 40px;
+    }
+
+    .footer-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 48px;
+    }
+
+    .footer-col h4 {
+      font-size: 14px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: white;
+      margin-bottom: 20px;
+      font-weight: 500;
+    }
+
+    .footer-col a {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 12px;
+      transition: color 0.2s;
+    }
+
+    .footer-col a:hover {
+      color: white;
+    }
+
+    .footer-bottom {
+      max-width: var(--max);
+      margin: 40px auto 0;
+      padding-top: 32px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      text-align: center;
+      font-size: 12px;
+      opacity: 0.6;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    Free Calgary local delivery over $75, Free shipping over $150 in Canada
+  </div>
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-inner">
+      <a href="/" class="logo">
+        <div class="logo-name">ISSA GREEN</div>
+        <div class="logo-sub">Japanese Organic Tea</div>
+      </a>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+        <a href="/farmers" class="active">Farmers</a>
+        <a href="/tea-selection">Tea</a>
+        <a href="/shop">Shop</a>
+        <a href="/contact">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <a href="/cart" style="font-size:12px; text-transform:uppercase; letter-spacing:0.09em;">Cart (0)</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow reveal">Exploring</p>
+      <h1 class="hero-title reveal reveal-delay-1">the Terroir</h1>
+    </div>
+  </section>
+
+  <!-- INTRO -->
+  <section class="intro-section">
+    <div class="section-wrap">
+      <p class="section-label reveal">Our Farmers</p>
+      <h2 class="reveal reveal-delay-1">Small family farms.<br>Big terroir.</h2>
+      <div class="intro-divider reveal reveal-delay-2"></div>
+      <p class="intro-lead reveal reveal-delay-2">
+        We are proud to work exclusively with small family tea farms.
+      </p>
+      <p class="intro-body reveal reveal-delay-3">
+        The terroir they have cultivated and their unique farming philosophies are clearly expressed in the flavour of their teas. Japanese tea farmers have been struggling with low incomes, high distribution costs through middlemen, and a lack of young successors to carry on their work. With these problems in mind, ISSA GREEN is supporting the new generation of tea farmers by offering them an integrated marketing solution. We cut out the middle man and bring farmers' products directly to market, helping them retain as much of their earnings as possible and promoting a new sustainable business cycle.
+      </p>
+      <div class="intro-divider reveal" style="margin-top: 48px;"></div>
+      <p class="intro-body reveal" style="margin-top: 32px;">
+        As with wine, the seasonal flavor of tea is influenced by annual soil conditions, climate, and the particular way the farmer has navigated the growing challenges of the year. It is our pleasure to offer teas that express all of these natural conditions, allowing you to fully enjoy their vintages.
+      </p>
+    </div>
+  </section>
+
+  <!-- SUGIMOTO FARM -->
+  <section class="farm-section">
+    <div class="section-wrap">
+      <div class="farm-divider reveal"></div>
+      <div class="farm-header reveal reveal-delay-1">
+        <h2 class="farm-name">Sugimoto farm</h2>
+        <p class="farm-location">in Kanaya, Shizuoka</p>
+      </div>
+
+      <div class="farm-content">
+        <div class="farm-text">
+          <p class="reveal">
+            Yoshiki, the father of Sugimoto Farm, switched production to completely organic methods under the strong belief that "Agrichemicals harm the farmer most of all." Now, Eigo and Shinri, two of his four children, work the fields under these same principles.
+          </p>
+          <p class="reveal reveal-delay-1">
+            They refrain from using agrichemicals of all kinds, including organic fertilizers, choosing to naturally foster the growth of their tea plants as much as possible. The Sugimotos plant their tea in wider intervals than other farms, allowing the plants to breathe. They base their agricultural method on mowing the weeds on their farm throughout the year and spreading the trimmings at the foot of the tea plants to provide insulation and nourishment. This <em>chagusa</em> agricultural method was declared a Globally Important Agricultural Heritage System by the Food and Agricultural Organization of the United Nations in 2013.
+          </p>
+          <p class="reveal reveal-delay-2">
+            Refraining from the use of fertilizers causes tea plants to grow slowly, but the development of roots and trunks under their own power more clearly brings forth the flavour of the Shizuoka terroir in the teas of Sugimoto Farm.
+          </p>
+        </div>
+
+        <div class="farm-images">
+          <img src="https://static.wixstatic.com/media/556961_64bc7a2c9bdf4ce2a62cd202b82ee54f~mv2.jpg/v1/fill/w_800,h_800,al_c,q_90/556961_64bc7a2c9bdf4ce2a62cd202b82ee54f~mv2.jpg" alt="Sugimoto Farm" class="farm-img portrait reveal">
+          <img src="https://static.wixstatic.com/media/556961_f76197ef89e14547a8b096876255fa9b~mv2.jpg/v1/fill/w_600,h_400,al_c,q_90/556961_f76197ef89e14547a8b096876255fa9b~mv2.jpg" alt="Tea field" class="farm-img landscape reveal reveal-delay-1">
+          <img src="https://static.wixstatic.com/media/556961_8ea09afc6c154136b64e37e82bf98e5b~mv2.jpg/v1/fill/w_600,h_400,al_c,q_90/556961_8ea09afc6c154136b64e37e82bf98e5b~mv2.jpg" alt="Tea plant close-up" class="farm-img landscape reveal reveal-delay-2">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ISHIKAWA FARM -->
+  <section class="farm-section">
+    <div class="section-wrap">
+      <div class="farm-divider reveal"></div>
+      <div class="farm-header reveal reveal-delay-1">
+        <h2 class="farm-name">Ishikawa farm</h2>
+        <p class="farm-location">in Toyota, Aichi</p>
+      </div>
+
+      <div class="farm-content">
+        <div class="farm-text">
+          <p class="reveal">
+            Ishikawa farm is the first certified "Organic Matcha" farm in Japan.
+          </p>
+          <p class="reveal reveal-delay-1">
+            Real matcha is protected by shrouds before harvesting, so as to protect it from the harsh rays of the sun and develop its natural brilliant colors and sweetness. This protective covering produces a stuffy atmosphere around the tea plant, which can easily lead to the tea succumbing to disease. Therefore, it has typically been thought that growing matcha with traditional organic methods is not possible, as agrichemicals were thought necessary to keep the plants healthy.
+          </p>
+          <p class="reveal reveal-delay-2">
+            The story of Ishikawa Farm's organic methods begins with the father of the farm, Tetsuo, who started his tea farm in bitterly cold mountain terrain. Persisting through years of disappointment, Tetsuo finally succeeded in developing a tea variety hearty enough to survive the cold of the region. His son, Tatsuki has inherited this method of mountainside tea farming.
+          </p>
+          <p class="reveal reveal-delay-3">
+            Organic teas are often looked down upon as being inferior to conventional teas in both appearance and flavor, but Ishikawa Farm has overcome these perceived limitations, and in 2020 was awarded the Japan Agricultural Grand Prize for the outstanding quality of its product.
+          </p>
+          <p class="reveal">
+            Regardless of the proliferation of the use of agrochemicals in the organic market due to the influence of large tea farms and powerful tea brands, Ishikawa farm is determined to continue to use its traditional methods to produce authentic organic tea.
+          </p>
+        </div>
+
+        <div class="farm-images">
+          <img src="https://static.wixstatic.com/media/556961_05e36bb00462492095d24c309eef7a23~mv2.jpg/v1/fill/w_600,h_800,al_c,q_90/556961_05e36bb00462492095d24c309eef7a23~mv2.jpg" alt="Ishikawa Farm" class="farm-img portrait reveal">
+          <img src="https://static.wixstatic.com/media/556961_e291e63b3d0040818e660f9f09d189e6~mv2.jpg/v1/fill/w_600,h_400,al_c,q_90/556961_e291e63b3d0040818e660f9f09d189e6~mv2.jpg" alt="Mountain tea field" class="farm-img landscape reveal reveal-delay-1">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUZUKI FARM -->
+  <section class="farm-section">
+    <div class="section-wrap">
+      <div class="farm-divider reveal"></div>
+      <div class="farm-header reveal reveal-delay-1">
+        <h2 class="farm-name">Suzuki farm</h2>
+        <p class="farm-location">in Shinshiro, Aichi</p>
+      </div>
+
+      <div class="farm-content">
+        <div class="farm-text">
+          <p class="reveal">
+            Suzuki Farm has been growing tea in the mountainous Shinshiro region of Aichi Prefecture for three generations.
+          </p>
+          <p class="reveal reveal-delay-1">
+            When the Suzukis first began farming, they had already reduced their consumption of agrichemicals thanks to the cool climate of the region, which naturally helped prevent diseases and pests from ruining the tea crop. By the 1990s, Suzuki Farm had halted all use of agrichemicals, and by 2002 it was recognized as a certified organic farm.
+          </p>
+          <p class="reveal reveal-delay-2">
+            The third-generation inheritor of the farm, Katsuya, decided at a young age to carry on the family tradition of tea growing, and actively studied not only farm work, but tea branding and processing as well.
+          </p>
+          <p class="reveal reveal-delay-3">
+            ISSA GREEN sells Suzuki Farm's freshest and most innovative products, including in house roasted houjicha and delicious wakocha.
+          </p>
+          <p class="reveal">
+            Recently, many farms have been going out of business due to low tea prices and the advancing age of farmers, and Katsuya has been switching this farmland to organic production. He has also been working actively towards the revitalization of tea growing in Shinshiro, and since starting farming has tripled the amount of land he is managing and working.
+          </p>
+        </div>
+
+        <div class="farm-images">
+          <img src="https://static.wixstatic.com/media/556961_5e7737ab71724eb1b0734a56c97fccb5~mv2.jpg/v1/fill/w_800,h_600,al_c,q_90/556961_5e7737ab71724eb1b0734a56c97fccb5~mv2.jpg" alt="Suzuki Farm landscape" class="farm-img large reveal">
+          <img src="https://static.wixstatic.com/media/556961_262cccb995f143e1945a8577bd377bc3~mv2.jpg/v1/fill/w_600,h_400,al_c,q_90/556961_262cccb995f143e1945a8577bd377bc3~mv2.jpg" alt="Tea processing" class="farm-img landscape reveal reveal-delay-1">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="section-wrap">
+      <a href="/tea-selection" class="cta-btn reveal">
+        Check the tea from our farmers
+        <svg viewBox="0 0 24 24">
+          <line x1="5" y1="12" x2="19" y2="12"/>
+          <polyline points="12 5 19 12 12 19"/>
+        </svg>
+      </a>
+      <p class="coming-soon reveal reveal-delay-1" style="margin-top: 60px;">
+        More farmers are coming...
+      </p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="/about">About Us</a>
+        <a href="/farmers">Farmers</a>
+        <a href="/wholesale">Wholesale</a>
+      </div>
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <a href="/tea-selection">Tea Selection</a>
+        <a href="/shop">Shop Tea</a>
+        <a href="/teaware">Tea Ware</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="/location">Location</a>
+        <a href="/contact">Contact Form</a>
+        <a href="mailto:issagreentea@gmail.com">issagreentea@gmail.com</a>
+      </div>
+      <div class="footer-col">
+        <h4>Follow</h4>
+        <a href="https://www.facebook.com/issagreentea/" target="_blank">Facebook</a>
+        <a href="http://www.instagram.com/issagreentea/" target="_blank">Instagram</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2026 by ISSA GREEN
+    </div>
+  </footer>
+
+  <!-- SCROLL REVEAL SCRIPT -->
+  <script>
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+    );
+
+    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us | Issa Green</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    /* ─── TOKENS ─────────────────────────────────────────── */
+    :root {
+      --ink:       #1C2B1A;
+      --sage:      #7A9B6E;
+      --slate:     #748092;
+      --stone:     #F0EDE6;
+      --mist:      #EEF0EB;
+      --offwhite:  #FAFAF7;
+      --mid:       #5C5C5C;
+      --light:     #8F8F8F;
+      --rule:      rgba(28,43,26,0.12);
+
+      --display:   'Amiri', Georgia, serif;
+      --body:      'DM Sans', system-ui, sans-serif;
+
+      --max:       1200px;
+      --pad:       clamp(24px, 5vw, 80px);
+      --section-v: clamp(60px, 8vw, 120px);
+
+      --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--body);
+      background: var(--offwhite);
+      color: var(--ink);
+      font-weight: 300;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { display: block; max-width: 100%; }
+    a   { text-decoration: none; color: inherit; }
+
+    /* ─── SCROLL REVEAL ──────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.75s var(--ease), transform 0.75s var(--ease);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+    .reveal-delay-1 { transition-delay: 0.12s; }
+    .reveal-delay-2 { transition-delay: 0.24s; }
+    .reveal-delay-3 { transition-delay: 0.36s; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+    }
+
+    /* ─── ANNOUNCEMENT BAR ───────────────────────────────── */
+    .topbar {
+      background: var(--ink);
+      color: rgba(255,255,255,0.75);
+      text-align: center;
+      font-size: 11.5px;
+      letter-spacing: 0.09em;
+      padding: 9px 20px;
+      font-family: var(--body);
+    }
+
+    /* ─── HEADER ─────────────────────────────────────────── */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      background: rgba(250,250,247,0.95);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .header-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 var(--pad);
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .logo {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.15;
+      flex-shrink: 0;
+    }
+    .logo-name {
+      font-family: var(--body);
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      color: var(--ink);
+      text-transform: uppercase;
+    }
+    .logo-sub {
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--light);
+      text-transform: uppercase;
+      margin-top: 1px;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+    nav a {
+      font-size: 12px;
+      letter-spacing: 0.09em;
+      color: var(--mid);
+      text-transform: uppercase;
+      transition: color 0.2s;
+      position: relative;
+    }
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -3px; left: 0;
+      width: 0; height: 1px;
+      background: var(--sage);
+      transition: width 0.25s var(--ease);
+    }
+    nav a:hover { color: var(--ink); }
+    nav a:hover::after { width: 100%; }
+    nav a.active { color: var(--ink); font-weight: 400; }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 768px) {
+      nav { display: none; }
+    }
+
+    /* ─── SECTIONS ───────────────────────────────────────── */
+    .section-wrap {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: var(--section-v) var(--pad);
+    }
+
+    .section-label {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--light);
+      font-weight: 400;
+      margin-bottom: 20px;
+      display: inline-block;
+      position: relative;
+    }
+
+    .section-label::after {
+      content: '';
+      position: absolute;
+      left: 0; bottom: -6px;
+      width: 32px;
+      height: 1px;
+      background: var(--sage);
+    }
+
+    /* ─── HERO SECTION ───────────────────────────────────── */
+    .hero-section {
+      background: var(--mist);
+      text-align: center;
+      padding: clamp(80px, 12vw, 140px) var(--pad);
+    }
+
+    .hero-section h1 {
+      font-family: var(--display);
+      font-size: clamp(42px, 6vw, 56px);
+      font-weight: 400;
+      line-height: 1.2;
+      margin-bottom: 24px;
+      color: var(--ink);
+      letter-spacing: 0.02em;
+    }
+
+    .hero-section .subtitle {
+      font-size: clamp(18px, 2.5vw, 24px);
+      color: var(--mid);
+      font-weight: 400;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* ─── STORY SECTION ──────────────────────────────────── */
+    .story-section {
+      background: var(--offwhite);
+    }
+
+    .story-divider {
+      width: 80px;
+      height: 1px;
+      background: var(--sage);
+      margin: 0 auto 40px;
+    }
+
+    .story-lead {
+      font-size: clamp(18px, 2.5vw, 22px);
+      line-height: 1.7;
+      color: var(--mid);
+      text-align: center;
+      font-style: italic;
+      font-family: var(--display);
+      max-width: 800px;
+      margin: 0 auto 48px;
+    }
+
+    .story-text {
+      max-width: 780px;
+      margin: 0 auto;
+    }
+
+    .story-text p {
+      font-size: clamp(15px, 2vw, 17px);
+      line-height: 1.75;
+      color: var(--mid);
+      margin-bottom: 24px;
+    }
+
+    .story-text p strong {
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    /* ─── MISSION SECTION ────────────────────────────────── */
+    .mission-section {
+      background: var(--stone);
+      text-align: center;
+    }
+
+    .mission-text {
+      font-family: var(--display);
+      font-size: clamp(20px, 3vw, 26px);
+      line-height: 1.6;
+      color: var(--ink);
+      max-width: 800px;
+      margin: 0 auto;
+      font-style: italic;
+    }
+
+    /* ─── PRINCIPLES SECTION ─────────────────────────────── */
+    .principles-section {
+      background: var(--offwhite);
+    }
+
+    .principles-title {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+
+    .principles-title h2 {
+      font-family: var(--display);
+      font-size: clamp(36px, 5vw, 48px);
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      color: var(--ink);
+    }
+
+    .principle {
+      margin-bottom: 80px;
+    }
+
+    .principle:last-child {
+      margin-bottom: 0;
+    }
+
+    .principle-header {
+      margin-bottom: 24px;
+    }
+
+    .principle-header h3 {
+      font-family: var(--body);
+      font-size: clamp(26px, 3.5vw, 34px);
+      font-weight: 400;
+      color: var(--ink);
+      margin-bottom: 16px;
+      letter-spacing: 0.01em;
+    }
+
+    .principle-divider {
+      width: 60px;
+      height: 1px;
+      background: var(--sage);
+    }
+
+    .principle-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(40px, 6vw, 80px);
+      align-items: start;
+    }
+
+    .principle-text p {
+      font-size: clamp(15px, 2vw, 17px);
+      line-height: 1.75;
+      color: var(--mid);
+      margin-bottom: 20px;
+    }
+
+    .principle-images {
+      display: grid;
+      gap: 20px;
+    }
+
+    .principle-images img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      border-radius: 2px;
+      aspect-ratio: 3/2;
+    }
+
+    @media (max-width: 900px) {
+      .principle-content {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ─── CTA BUTTON ─────────────────────────────────────── */
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 40px;
+      background: var(--ink);
+      color: white;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border-radius: 2px;
+      transition: all 0.3s var(--ease);
+      font-weight: 400;
+      margin-top: 32px;
+    }
+
+    .cta-btn:hover {
+      background: var(--sage);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .cta-btn svg {
+      width: 18px;
+      height: 18px;
+      stroke: currentColor;
+      stroke-width: 2;
+      fill: none;
+    }
+
+    /* ─── FOOTER ─────────────────────────────────────────── */
+    footer {
+      background: var(--ink);
+      color: rgba(255,255,255,0.7);
+      padding: 60px var(--pad) 40px;
+    }
+
+    .footer-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 48px;
+    }
+
+    .footer-col h4 {
+      font-size: 14px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: white;
+      margin-bottom: 20px;
+      font-weight: 500;
+    }
+
+    .footer-col a {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 12px;
+      transition: color 0.2s;
+    }
+
+    .footer-col a:hover {
+      color: white;
+    }
+
+    .footer-bottom {
+      max-width: var(--max);
+      margin: 40px auto 0;
+      padding-top: 32px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      text-align: center;
+      font-size: 12px;
+      opacity: 0.6;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    Free Calgary local delivery over $75, Free shipping over $150 in Canada
+  </div>
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-inner">
+      <a href="/" class="logo">
+        <div class="logo-name">ISSA GREEN</div>
+        <div class="logo-sub">Japanese Organic Tea</div>
+      </a>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/about" class="active">About</a>
+        <a href="/farmers">Farmers</a>
+        <a href="/tea-selection">Tea</a>
+        <a href="/shop">Shop</a>
+        <a href="/contact">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <a href="/cart" style="font-size:12px; text-transform:uppercase; letter-spacing:0.09em;">Cart (0)</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero-section">
+    <p class="section-label reveal">Our Story</p>
+    <h1 class="reveal reveal-delay-1">Connecting farmers<br>with tea lovers</h1>
+    <p class="subtitle reveal reveal-delay-2">
+      ISSA GREEN is a Calgary-based Japanese organic tea brand
+    </p>
+  </section>
+
+  <!-- STORY -->
+  <section class="story-section">
+    <div class="section-wrap">
+      <div class="story-divider reveal"></div>
+      <p class="story-lead reveal reveal-delay-1">
+        ISSA GREEN was started by Kazuki Nomura, Japanese fabric designer who moved to Canada and started this business to promote sustainability, organic-based products, and connecting independent farmers with consumers willing to try healthy and tasty Japanese tea.
+      </p>
+
+      <div class="story-text">
+        <p class="reveal">
+          <strong>Kazuki was a huge tea fan ever since her days of drinking green tea for her health and beauty in busy Japan.</strong>
+        </p>
+        <p class="reveal reveal-delay-1">
+          <strong>However, when she started meeting with young farmers (back in 2016), she was shocked about the situation of Japanese agriculture.</strong>
+        </p>
+        <p class="reveal reveal-delay-2">
+          <strong>Surprisingly, Japan is the 3rd highest user of agricultural chemicals in the world.</strong> Tea farming especially uses a lot of pesticides, herbicides and chemical fertilizers, and Japan's allowance of residual chemicals is relatively higher than in other countries.
+        </p>
+        <p class="reveal reveal-delay-3">
+          <strong>Also, many farmers have been facing financial difficulties from conventional business models.</strong> Therefore, the young generation hesitate to take over their family business. During her research, Kazuki met many organic farmers who are independent and willing to change this condition.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MISSION -->
+  <section class="mission-section">
+    <div class="section-wrap">
+      <p class="mission-text reveal">
+        She decided to support Japanese organic tea farmers with sustainability directly by developing the ISSA GREEN brand.
+      </p>
+      <p class="mission-text reveal reveal-delay-1" style="margin-top: 32px;">
+        ISSA GREEN deals only with these selected producers, creating a superior product that consumers can both trust and enjoy.
+      </p>
+    </div>
+  </section>
+
+  <!-- PRINCIPLES -->
+  <section class="principles-section">
+    <div class="section-wrap">
+      <div class="principles-title reveal">
+        <p class="section-label">Our Values</p>
+        <h2>OUR PRINCIPLES</h2>
+      </div>
+
+      <!-- HONESTY -->
+      <div class="principle">
+        <div class="principle-header reveal">
+          <h3>Honesty</h3>
+          <div class="principle-divider"></div>
+        </div>
+        <div class="principle-content">
+          <div class="principle-text">
+            <p class="reveal reveal-delay-1">
+              "Organic" has become big business, and many have grown suspicious of what the term really means these days. Therefore, we carefully select our partners.
+            </p>
+            <p class="reveal reveal-delay-2">
+              They are not only following strict rules of organic farming, but also sincerely caring about environment and consumer's health.
+            </p>
+            <p class="reveal reveal-delay-3">
+              Additionally, our products are 100% traceable. So, you can be sure that your tea came from one of our trusted producers.
+            </p>
+          </div>
+          <div class="principle-images">
+            <img src="https://static.wixstatic.com/media/556961_7bcda78e4b144cab968c68da318c5ab5~mv2.jpg/v1/fill/w_700,h_450,al_c,q_90/556961_7bcda78e4b144cab968c68da318c5ab5~mv2.jpg" alt="Tea farm" class="reveal reveal-delay-1">
+          </div>
+        </div>
+      </div>
+
+      <!-- UNIQUENESS -->
+      <div class="principle">
+        <div class="principle-header reveal">
+          <h3>Uniqueness</h3>
+          <div class="principle-divider"></div>
+        </div>
+        <div class="principle-content">
+          <div class="principle-text">
+            <p class="reveal reveal-delay-1">
+              Each of our farmers have their unique philosophy of organic farming, developed through their daily connection to nature. We love finding the interesting stories behind their tea flavors.
+            </p>
+            <p class="reveal reveal-delay-2">
+              We bring Japanese tea culture from their farms to you, in a modern and unique way!
+            </p>
+          </div>
+          <div class="principle-images">
+            <img src="https://static.wixstatic.com/media/556961_818ab581e762430da383491a951f5eee~mv2.jpg/v1/fill/w_700,h_450,al_c,q_90/556961_818ab581e762430da383491a951f5eee~mv2.jpg" alt="Tea preparation" class="reveal reveal-delay-1">
+          </div>
+        </div>
+      </div>
+
+      <!-- SUSTAINABILITY -->
+      <div class="principle">
+        <div class="principle-header reveal">
+          <h3>Sustainability</h3>
+          <div class="principle-divider"></div>
+        </div>
+        <div class="principle-content">
+          <div class="principle-text">
+            <p class="reveal reveal-delay-1">
+              We have created a tea business model that is designed to be sustainable for both farmers and the environment.
+            </p>
+            <p class="reveal reveal-delay-2">
+              Traditionally, farmers have not been able to freely set their own prices when dealing with the tea business. However, ISSA GREEN buys directly from producers, allowing them the independence to sustainably continue their business into the future at a fair price for their product.
+            </p>
+            <p class="reveal reveal-delay-3">
+              We pride ourselves on connecting the younger generation of Japanese tea farmers with foreign customers, helping to create a brighter future for tea.
+            </p>
+            <div style="text-align: center;">
+              <a href="/farmers" class="cta-btn reveal">
+                Find out more about our farmers
+                <svg viewBox="0 0 24 24">
+                  <line x1="5" y1="12" x2="19" y2="12"/>
+                  <polyline points="12 5 19 12 12 19"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+          <div class="principle-images">
+            <!-- Optional: Add sustainability image if available -->
+          </div>
+        </div>
+      </div>
+
+      <!-- FUN -->
+      <div class="principle">
+        <div class="principle-header reveal">
+          <h3>and Fun!!</h3>
+          <div class="principle-divider"></div>
+        </div>
+        <div class="principle-text">
+          <p class="reveal reveal-delay-1">
+            We are planning events and collaborations. Stay tuned and follow our social media presence.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="/about">About Us</a>
+        <a href="/farmers">Farmers</a>
+        <a href="/wholesale">Wholesale</a>
+      </div>
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <a href="/tea-selection">Tea Selection</a>
+        <a href="/shop">Shop Tea</a>
+        <a href="/teaware">Tea Ware</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="/location">Location</a>
+        <a href="/contact">Contact Form</a>
+        <a href="mailto:issagreentea@gmail.com">issagreentea@gmail.com</a>
+      </div>
+      <div class="footer-col">
+        <h4>Follow</h4>
+        <a href="https://www.facebook.com/issagreentea/" target="_blank">Facebook</a>
+        <a href="http://www.instagram.com/issagreentea/" target="_blank">Instagram</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2026 by ISSA GREEN
+    </div>
+  </footer>
+
+  <!-- SCROLL REVEAL SCRIPT -->
+  <script>
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+    );
+
+    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+  </script>
+
+</body>
+</html>
