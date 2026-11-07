@@ -6,6 +6,7 @@ Static HTML site, migrating pieces to React where it makes sense.
 - `index.html` — homepage
 - `about.html`
 - `farmers.html`
+- `location.html`
 - `tea-selection.html`
 - `issa-tea-selection-beautiful.html`
 
