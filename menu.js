@@ -1,7 +1,7 @@
 (function () {
   var items = [
-    ['About', '/about'], ['Farmers', '/farmers'],
-    ['Shop', [['Tea', '/tea-selection'], ['Tea Ware', '#'], ['Pottery', '#']]],
+    ['About', '/about'], ['Farmers', '/farmers'], ['Tea Selection', '/tea-selection'],
+    ['Shop', [['Tea', '#'], ['Tea Ware', '#'], ['Pottery', '#']]],
     ['Location', '/location'], ['Events', '#']
   ];
   var header = document.querySelector('header');
