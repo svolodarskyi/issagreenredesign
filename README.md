@@ -7,6 +7,7 @@ Static HTML site, migrating pieces to React where it makes sense.
 - `about.html`
 - `farmers.html`
 - `location.html`
+- `shop-tea.html`
 - `tea-selection.html`
 - `issa-tea-selection-beautiful.html`
 
