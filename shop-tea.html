@@ -991,19 +991,18 @@
     .cat-head p.cat-desc { font-size: 14.5px; line-height: 1.85; color: var(--mid); }
 
     .product-grid { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--rule); border-left: 1px solid var(--rule); }
-    .product-card { background: var(--offwhite); border-right: 1px solid var(--rule); border-bottom: 1px solid var(--rule); padding: 28px 26px 26px; display: flex; flex-direction: column; min-height: 210px; transition: background 0.25s; }
-    .shop-cat:nth-of-type(even) .product-card { background: var(--offwhite); }
+    .product-card { position: relative; background: var(--offwhite); border-right: 1px solid var(--rule); border-bottom: 1px solid var(--rule); padding: 28px 26px 26px; display: flex; flex-direction: column;  transition: background 0.25s; }
+    .shop-cat:nth-of-type(even) .product-card { position: relative; background: var(--offwhite); }
     .product-card:hover { background: #fff; }
-    .product-img { aspect-ratio: 1 / 1; margin: -28px -26px 20px; background: #EFEFEC; overflow: hidden; }
+    .product-img { aspect-ratio: 1 / 1; margin: -28px -26px 22px; background: #F0EDE6; overflow: hidden; }
     .product-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s var(--ease); }
     .product-card:hover .product-img img { transform: scale(1.04); }
     .product-badge {
-      align-self: flex-start; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
-      color: var(--sage); border: 1px solid var(--sage); padding: 3px 10px; margin-bottom: 14px;
+      position: absolute; top: 16px; left: 16px; z-index: 1; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--sage); border: 1px solid var(--sage); background: rgba(250,250,247,0.92); padding: 3px 10px;
     }
     .product-badge.muted { color: var(--light); border-color: var(--rule); }
-    .product-badge.spacer { visibility: hidden; }
-    .product-name { font-family: var(--display); font-size: 22px; font-weight: 400; line-height: 1.3; color: var(--ink); }
+        .product-name { font-family: var(--display); font-size: 22px; font-weight: 400; line-height: 1.3; color: var(--ink); }
     .product-price { margin-top: auto; padding-top: 22px; font-size: 15px; color: var(--ink); display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
     .product-price s { color: var(--light); font-size: 13px; }
     .product-price .sale { color: var(--sage); font-weight: 500; }
@@ -1102,14 +1101,12 @@
           </div>
           <div class="product-card reveal">
             <div class="product-img"><img src="/images/shop/fukamushi-sencha-80g.jpg" alt="Fukamushi sencha — Loose tea 80g" loading="lazy"></div>
-            <span class="product-badge spacer">&nbsp;</span>
             <p class="product-name">Fukamushi sencha — Loose tea 80g</p>
             <p class="product-price">$26.50</p><p class="product-tax">Excluding GST/HST</p>
             <button class="add-btn" type="button">Add to cart</button>
           </div>
           <div class="product-card reveal">
             <div class="product-img"><img src="/images/shop/premium-sencha-80g.jpg" alt="Premium sencha — Loose tea 80g" loading="lazy"></div>
-            <span class="product-badge spacer">&nbsp;</span>
             <p class="product-name">Premium sencha — Loose tea 80g</p>
             <p class="product-price">$24.50</p><p class="product-tax">Excluding GST/HST</p>
             <button class="add-btn" type="button">Add to cart</button>
@@ -1141,7 +1138,6 @@
           </div>
           <div class="product-card reveal">
             <div class="product-img"><img src="/images/shop/fukamushi-genmaicha-bags.jpg" alt="Fukamushi Genmaicha — Tea bags" loading="lazy"></div>
-            <span class="product-badge spacer">&nbsp;</span>
             <p class="product-name">Fukamushi Genmaicha — Tea bags</p>
             <p class="product-price">$22.00</p><p class="product-tax">Excluding GST/HST</p>
             <button class="add-btn" type="button">Add to cart</button>
@@ -1166,7 +1162,6 @@
           </div>
           <div class="product-card reveal">
             <div class="product-img"><img src="/images/shop/premium-matcha-30g.jpg" alt="Premium Matcha 30g — for traditional way" loading="lazy"></div>
-            <span class="product-badge spacer">&nbsp;</span>
             <p class="product-name">Premium Matcha 30g — for traditional way</p>
             <p class="product-price"><s>$36.00</s><span class="sale">$30.00</span></p><p class="product-tax">Excluding GST/HST</p>
             <button class="add-btn" type="button">Add to cart</button>
@@ -1198,21 +1193,18 @@
       <div class="product-grid">
           <div class="product-card reveal">
             <div class="product-img"><img src="/images/shop/houjicha-powder-80g.jpg" alt="Houjicha — Powder 80g" loading="lazy"></div>
-            <span class="product-badge spacer">&nbsp;</span>
             <p class="product-name">Houjicha — Powder 80g</p>
             <p class="product-price">$22.00</p><p class="product-tax">Excluding GST/HST</p>
             <button class="add-btn" type="button">Add to cart</button>
           </div>
           <div class="product-card reveal">
             <div class="product-img"><img src="/images/shop/houjicha-loose-80g.jpg" alt="Houjicha — Loose tea 80g" loading="lazy"></div>
-            <span class="product-badge spacer">&nbsp;</span>
             <p class="product-name">Houjicha — Loose tea 80g</p>
             <p class="product-price">$18.50</p><p class="product-tax">Excluding GST/HST</p>
             <button class="add-btn" type="button">Add to cart</button>
           </div>
           <div class="product-card reveal">
             <div class="product-img"><img src="/images/shop/kyobancha.jpg" alt="Kyobancha — Loose tea 20g–50g" loading="lazy"></div>
-            <span class="product-badge spacer">&nbsp;</span>
             <p class="product-name">Kyobancha — Loose tea 20g–50g</p>
             <p class="product-price">$15.00</p><p class="product-tax">Excluding GST/HST</p>
             <button class="add-btn" type="button">Add to cart</button>
@@ -1229,14 +1221,12 @@
       <div class="product-grid">
           <div class="product-card reveal">
             <div class="product-img"><img src="/images/shop/oolong-32g.jpg" alt="Oolong — Loose tea 32g" loading="lazy"></div>
-            <span class="product-badge spacer">&nbsp;</span>
             <p class="product-name">Oolong — Loose tea 32g</p>
             <p class="product-price"><span class="oos">Out of stock</span></p>
             <button class="add-btn" type="button" disabled>Out of stock</button>
           </div>
           <div class="product-card reveal">
             <div class="product-img"><img src="/images/shop/wakocha.jpg" alt="Wakocha — Loose tea 40g–150g" loading="lazy"></div>
-            <span class="product-badge spacer">&nbsp;</span>
             <p class="product-name">Wakocha — Loose tea 40g–150g</p>
             <p class="product-price">$18.50</p><p class="product-tax">Excluding GST/HST</p>
             <button class="add-btn" type="button">Add to cart</button>
