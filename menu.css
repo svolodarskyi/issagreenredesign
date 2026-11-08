@@ -1,0 +1,41 @@
+/* Mobile menu — shared by all pages */
+.menu-toggle { display: none; }
+.mobile-menu { display: none; }
+
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: flex; align-items: center; justify-content: center;
+    width: 36px; height: 36px; padding: 0; margin-right: -6px;
+    background: none; border: none; cursor: pointer; color: var(--ink, #1C2B1A);
+  }
+  .menu-toggle span, .menu-toggle span::before, .menu-toggle span::after {
+    display: block; width: 20px; height: 1.4px; background: currentColor;
+    transition: transform .3s cubic-bezier(.25,.46,.45,.94), opacity .2s;
+  }
+  .menu-toggle span { position: relative; }
+  .menu-toggle span::before, .menu-toggle span::after { content: ''; position: absolute; left: 0; }
+  .menu-toggle span::before { top: -6px; }
+  .menu-toggle span::after { top: 6px; }
+  .menu-toggle[aria-expanded="true"] span { background: transparent; }
+  .menu-toggle[aria-expanded="true"] span::before { top: 0; transform: rotate(45deg); }
+  .menu-toggle[aria-expanded="true"] span::after { top: 0; transform: rotate(-45deg); }
+
+  .mobile-menu {
+    display: block; position: absolute; top: 100%; left: 0; right: 0;
+    height: calc(100vh - 68px); height: calc(100dvh - 68px);
+    overflow-y: auto; background: var(--offwhite, #FAFAF7);
+    border-top: 1px solid var(--rule, rgba(28,43,26,.12));
+    padding: 12px var(--pad, 24px) 40px;
+    opacity: 0; visibility: hidden; transform: translateY(-8px);
+    transition: opacity .3s, transform .3s, visibility 0s .3s;
+  }
+  .mobile-menu.open { opacity: 1; visibility: visible; transform: none; transition: opacity .3s, transform .3s; }
+  .mobile-menu a {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding: 18px 0; border-bottom: 1px solid var(--rule, rgba(28,43,26,.12));
+    font-family: var(--display, 'Amiri', Georgia, serif);
+    font-size: 28px; font-weight: 300; color: var(--ink, #1C2B1A);
+  }
+  .mobile-menu a:hover, .mobile-menu a[aria-current="page"] { color: var(--sage, #7A9B6E); }
+  body.menu-open { overflow: hidden; }
+}
