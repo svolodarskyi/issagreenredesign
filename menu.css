@@ -32,9 +32,9 @@
   .mobile-menu.open { opacity: 1; visibility: visible; transform: none; transition: opacity .3s, transform .3s; }
   .mobile-menu a {
     display: flex; justify-content: space-between; align-items: baseline;
-    padding: 18px 0; border-bottom: 1px solid var(--rule, rgba(28,43,26,.12));
+    padding: 15px 0; border-bottom: 1px solid var(--rule, rgba(28,43,26,.12));
     font-family: var(--display, 'Amiri', Georgia, serif);
-    font-size: 28px; font-weight: 300; color: var(--ink, #1C2B1A);
+    font-size: 20px; font-weight: 300; color: var(--ink, #1C2B1A);
   }
   .mobile-menu a:hover, .mobile-menu a[aria-current="page"] { color: var(--sage, #7A9B6E); }
   body.menu-open { overflow: hidden; }
