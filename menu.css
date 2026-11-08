@@ -31,7 +31,8 @@
 .menu-toggle { display: none; }
 .mobile-menu { display: none; }
 
-@media (max-width: 768px) {
+@media (max-width: 1000px) {
+  header nav { display: none; }
   .menu-toggle {
     display: flex; align-items: center; justify-content: center;
     width: 36px; height: 36px; padding: 0; margin-left: -8px; flex-shrink: 0;

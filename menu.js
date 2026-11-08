@@ -2,6 +2,7 @@
   var items = [
     ['About', '/about'], ['Farmers', '/farmers'], ['Tea Selection', '/tea-selection'],
     ['Shop', [['Tea', '/shop-tea'], ['Tea Ware', '/tea-ware'], ['Pottery', '#']]],
+    ['Experiences', '#'], ['Journal', '#'],
     ['Location', '/location'], ['Events', '#']
   ];
   var header = document.querySelector('header');
@@ -62,7 +63,7 @@
   btn.addEventListener('click', function () { set(btn.getAttribute('aria-expanded') !== 'true'); });
   menu.addEventListener('click', function (e) { if (e.target.closest('a')) set(false); });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') set(false); });
-  window.addEventListener('resize', function () { if (window.innerWidth > 768) set(false); });
+  window.addEventListener('resize', function () { if (window.innerWidth > 1000) set(false); });
 
   actions.parentNode.insertBefore(btn, actions.parentNode.firstChild);
   header.appendChild(menu);
