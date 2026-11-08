@@ -64,6 +64,6 @@
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') set(false); });
   window.addEventListener('resize', function () { if (window.innerWidth > 768) set(false); });
 
-  actions.appendChild(btn);
+  actions.parentNode.insertBefore(btn, actions.parentNode.firstChild);
   header.appendChild(menu);
 })();

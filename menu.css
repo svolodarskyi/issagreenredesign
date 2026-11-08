@@ -34,7 +34,7 @@
 @media (max-width: 768px) {
   .menu-toggle {
     display: flex; align-items: center; justify-content: center;
-    width: 36px; height: 36px; padding: 0; margin-right: -6px;
+    width: 36px; height: 36px; padding: 0; margin-left: -8px; flex-shrink: 0;
     background: none; border: none; cursor: pointer; color: var(--ink, #1C2B1A);
   }
   .menu-toggle span, .menu-toggle span::before, .menu-toggle span::after {
@@ -49,6 +49,8 @@
   .menu-toggle[aria-expanded="true"] span::before { top: 0; transform: rotate(45deg); }
   .menu-toggle[aria-expanded="true"] span::after { top: 0; transform: rotate(-45deg); }
 
+  .header-inner { gap: 12px; }
+  .header-inner .logo { margin-right: auto; }
   .mobile-menu {
     display: block; position: absolute; top: 100%; left: 0; right: 0;
     height: calc(100vh - 68px); height: calc(100dvh - 68px);
