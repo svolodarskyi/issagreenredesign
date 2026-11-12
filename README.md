@@ -9,6 +9,8 @@ Static HTML site, migrating pieces to React where it makes sense.
 - `location.html`
 - `shop-tea.html`
 - `tea-ware.html`
+- `events.html`
+- `workshops/wholelife-go-jan-9-1230.html`
 - `tea-selection.html`
 - `issa-tea-selection-beautiful.html`
 

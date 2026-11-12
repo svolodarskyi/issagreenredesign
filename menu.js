@@ -3,7 +3,7 @@
     ['About', '/about'], ['Farmers', '/farmers'], ['Tea Selection', '/tea-selection'],
     ['Shop', [['Tea', '/shop-tea'], ['Tea Ware', '/tea-ware'], ['Pottery', '#']]],
     ['Experiences', '#'], ['Journal', '#'],
-    ['Location', '/location'], ['Events', '#']
+    ['Location', '/location'], ['Events', '/events']
   ];
   var header = document.querySelector('header');
   var actions = header && header.querySelector('.header-actions');
