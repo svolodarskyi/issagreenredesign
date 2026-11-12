@@ -997,6 +997,14 @@
     .product-img { aspect-ratio: 1 / 1; margin: -28px -26px 22px; background: #F0EDE6; overflow: hidden; }
     .product-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s var(--ease); }
     .product-card:hover .product-img img { transform: scale(1.04); }
+    .product-img { position: relative; }
+    .product-img img { position: absolute; inset: 0; }
+    .product-img .alt { opacity: 0; transition: opacity 0.45s var(--ease); }
+    .product-img.placeholder { display: flex; align-items: center; justify-content: center; color: var(--light); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; background: #F0EDE6; }
+    @media (hover: hover) {
+      .product-card:hover .product-img .alt { opacity: 1; }
+      .product-card:hover .product-img img:not(.alt) { transform: none; }
+    }
     .product-badge {
       position: absolute; top: 16px; left: 16px; z-index: 1; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
       color: var(--sage); border: 1px solid var(--sage); background: rgba(250,250,247,0.92); padding: 3px 10px;
@@ -1095,26 +1103,26 @@
       </div>
       <div class="product-grid">
           <div class="product-card reveal">
-            <div class="product-img"><img src="/images/shop/fukamushi-sencha-bags.jpg" alt="Fukamushi sencha — Tea bags" loading="lazy"></div>
+            <div class="product-img"><img src="/images/shop/fukamushi-sencha-bags.jpg" alt="Fukamushi sencha — Tea bags" loading="lazy"><img class="alt" src="/images/shop/fukamushi-sencha-bags-hover.jpg" alt="" loading="lazy"></div>
             <span class="product-badge">Best seller</span>
             <p class="product-name">Fukamushi sencha — Tea bags</p>
             <p class="product-price">$22.00</p><p class="product-tax">Excluding GST/HST</p>
             <button class="add-btn" type="button">Add to cart</button>
           </div>
           <div class="product-card reveal">
-            <div class="product-img"><img src="/images/shop/fukamushi-sencha-80g.jpg" alt="Fukamushi sencha — Loose tea 80g" loading="lazy"></div>
+            <div class="product-img"><img src="/images/shop/fukamushi-sencha-80g.jpg" alt="Fukamushi sencha — Loose tea 80g" loading="lazy"><img class="alt" src="/images/shop/fukamushi-sencha-80g-hover.jpg" alt="" loading="lazy"></div>
             <p class="product-name">Fukamushi sencha — Loose tea 80g</p>
             <p class="product-price">$26.50</p><p class="product-tax">Excluding GST/HST</p>
             <button class="add-btn" type="button">Add to cart</button>
           </div>
           <div class="product-card reveal">
-            <div class="product-img"><img src="/images/shop/premium-sencha-80g.jpg" alt="Premium sencha — Loose tea 80g" loading="lazy"></div>
+            <div class="product-img"><img src="/images/shop/premium-sencha-80g.jpg" alt="Premium sencha — Loose tea 80g" loading="lazy"><img class="alt" src="/images/shop/premium-sencha-80g-hover.jpg" alt="" loading="lazy"></div>
             <p class="product-name">Premium sencha — Loose tea 80g</p>
             <p class="product-price">$24.50</p><p class="product-tax">Excluding GST/HST</p>
             <button class="add-btn" type="button">Add to cart</button>
           </div>
           <div class="product-card reveal">
-            <div class="product-img"><img src="/images/shop/gyokuro-30g.jpg" alt="Gyokuro — Loose tea 30g" loading="lazy"></div>
+            <div class="product-img"><img src="/images/shop/gyokuro-30g.jpg" alt="Gyokuro — Loose tea 30g" loading="lazy"><img class="alt" src="/images/shop/gyokuro-30g-hover.jpg" alt="" loading="lazy"></div>
             <span class="product-badge muted">Limited</span>
             <p class="product-name">Gyokuro — Loose tea 30g</p>
             <p class="product-price"><span class="oos">Out of stock</span></p>
@@ -1132,14 +1140,14 @@
       </div>
       <div class="product-grid">
           <div class="product-card reveal">
-            <div class="product-img"><img src="/images/shop/fukamushi-genmaicha-80g.jpg" alt="Fukamushi Genmaicha — Loose tea 80g" loading="lazy"></div>
+            <div class="product-img"><img src="/images/shop/fukamushi-genmaicha-80g.jpg" alt="Fukamushi Genmaicha — Loose tea 80g" loading="lazy"><img class="alt" src="/images/shop/fukamushi-genmaicha-80g-hover.jpg" alt="" loading="lazy"></div>
             <span class="product-badge">Best seller</span>
             <p class="product-name">Fukamushi Genmaicha — Loose tea 80g</p>
             <p class="product-price">$19.80</p><p class="product-tax">Excluding GST/HST</p>
             <button class="add-btn" type="button">Add to cart</button>
           </div>
           <div class="product-card reveal">
-            <div class="product-img"><img src="/images/shop/fukamushi-genmaicha-bags.jpg" alt="Fukamushi Genmaicha — Tea bags" loading="lazy"></div>
+            <div class="product-img"><img src="/images/shop/fukamushi-genmaicha-bags.jpg" alt="Fukamushi Genmaicha — Tea bags" loading="lazy"><img class="alt" src="/images/shop/fukamushi-genmaicha-bags-hover.jpg" alt="" loading="lazy"></div>
             <p class="product-name">Fukamushi Genmaicha — Tea bags</p>
             <p class="product-price">$22.00</p><p class="product-tax">Excluding GST/HST</p>
             <button class="add-btn" type="button">Add to cart</button>
@@ -1156,27 +1164,27 @@
       </div>
       <div class="product-grid">
           <div class="product-card reveal">
-            <div class="product-img"><img src="/images/shop/ceremonial-matcha-30g.jpg" alt="Ceremonial Matcha 30g — for traditional way and latte" loading="lazy"></div>
+            <div class="product-img"><img src="/images/shop/ceremonial-matcha-30g.jpg" alt="Ceremonial Matcha 30g — for traditional way and latte" loading="lazy"><img class="alt" src="/images/shop/ceremonial-matcha-30g-hover.jpg" alt="" loading="lazy"></div>
             <span class="product-badge">Popular</span>
             <p class="product-name">Ceremonial Matcha 30g — for traditional way and latte</p>
             <p class="product-price"><s>$29.50</s><span class="sale">$25.00</span></p><p class="product-tax">Excluding GST/HST</p>
             <button class="add-btn" type="button">Add to cart</button>
           </div>
           <div class="product-card reveal">
-            <div class="product-img"><img src="/images/shop/premium-matcha-30g.jpg" alt="Premium Matcha 30g — for traditional way" loading="lazy"></div>
+            <div class="product-img"><img src="/images/shop/premium-matcha-30g.jpg" alt="Premium Matcha 30g — for traditional way" loading="lazy"><img class="alt" src="/images/shop/premium-matcha-30g-hover.jpg" alt="" loading="lazy"></div>
             <p class="product-name">Premium Matcha 30g — for traditional way</p>
             <p class="product-price"><s>$36.00</s><span class="sale">$30.00</span></p><p class="product-tax">Excluding GST/HST</p>
             <button class="add-btn" type="button">Add to cart</button>
           </div>
           <div class="product-card reveal">
-            <div class="product-img"><img src="/images/shop/culinary-matcha-100g.jpg" alt="Premium Culinary Matcha 100g" loading="lazy"></div>
+            <div class="product-img"><img src="/images/shop/culinary-matcha-100g.jpg" alt="Premium Culinary Matcha 100g" loading="lazy"><img class="alt" src="/images/shop/culinary-matcha-100g-hover.jpg" alt="" loading="lazy"></div>
             <span class="product-badge">Value pack</span>
             <p class="product-name">Premium Culinary Matcha 100g</p>
             <p class="product-price">$56.00</p><p class="product-tax">Excluding GST/HST</p>
             <button class="add-btn" type="button">Add to cart</button>
           </div>
           <div class="product-card reveal">
-            <div class="product-img"><img src="/images/shop/culinary-matcha-20g.jpg" alt="Premium Culinary Matcha 20g — Sample bag" loading="lazy"></div>
+            <div class="product-img"><img src="/images/shop/culinary-matcha-20g.jpg" alt="Premium Culinary Matcha 20g — Sample bag" loading="lazy"><img class="alt" src="/images/shop/culinary-matcha-20g-hover.jpg" alt="" loading="lazy"></div>
             <span class="product-badge">Sample size</span>
             <p class="product-name">Premium Culinary Matcha 20g — Sample bag</p>
             <p class="product-price">$22.00</p><p class="product-tax">Excluding GST/HST</p>
