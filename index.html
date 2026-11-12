@@ -960,6 +960,7 @@
     }
 
   </style>
+  <link rel="stylesheet" href="/menu.css">
 </head>
 <body>
 
@@ -979,12 +980,19 @@
       <nav>
         <a href="/about">About</a>
         <a href="/farmers">Farmers</a>
-        <a href="/tea-selection">Tea</a>
-        <a href="#">Shop Tea</a>
-        <a href="#">Tea Ware</a>
-        <a href="#">Pottery</a>
-        <a href="#">Location</a>
-        <a href="#">Events</a>
+        <a href="/tea-selection">Tea Selection</a>
+        <div class="nav-group">
+          <button type="button" class="nav-parent" aria-expanded="false" aria-haspopup="true">Shop</button>
+          <div class="nav-sub">
+            <a href="/shop-tea">Tea</a>
+            <a href="/tea-ware">Tea Ware</a>
+            <a href="#">Pottery</a>
+          </div>
+        </div>
+        <a href="#">Experiences</a>
+        <a href="#">Journal</a>
+        <a href="/location">Location</a>
+        <a href="/events">Events</a>
       </nav>
 
       <div class="header-actions">
@@ -1517,5 +1525,6 @@
     // Accordion: opens downward, never pushes page up.
     // Closing snaps max-height to 0 — content collapses below, not above.
   </script>
+  <script src="/menu.js"></script>
 </body>
 </html>

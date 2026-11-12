@@ -417,6 +417,7 @@
       opacity: 0.6;
     }
   </style>
+  <link rel="stylesheet" href="/menu.css">
 </head>
 <body>
 
@@ -433,12 +434,21 @@
         <div class="logo-sub">Japanese Organic Tea</div>
       </a>
       <nav>
-        <a href="/">Home</a>
-        <a href="/about" class="active">About</a>
+        <a href="/about">About</a>
         <a href="/farmers">Farmers</a>
-        <a href="/tea-selection">Tea</a>
-        <a href="/shop">Shop</a>
-        <a href="/contact">Contact</a>
+        <a href="/tea-selection">Tea Selection</a>
+        <div class="nav-group">
+          <button type="button" class="nav-parent" aria-expanded="false" aria-haspopup="true">Shop</button>
+          <div class="nav-sub">
+            <a href="/shop-tea">Tea</a>
+            <a href="/tea-ware">Tea Ware</a>
+            <a href="#">Pottery</a>
+          </div>
+        </div>
+        <a href="#">Experiences</a>
+        <a href="#">Journal</a>
+        <a href="/location">Location</a>
+        <a href="/events">Events</a>
       </nav>
       <div class="header-actions">
         <a href="/cart" style="font-size:12px; text-transform:uppercase; letter-spacing:0.09em;">Cart (0)</a>
@@ -642,5 +652,6 @@
     document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
   </script>
 
+  <script src="/menu.js"></script>
 </body>
 </html>

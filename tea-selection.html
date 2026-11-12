@@ -21,6 +21,8 @@
       --display:  'Amiri', Georgia, serif;
       --body:     'DM Sans', system-ui, sans-serif;
       --ease:     cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      --max:      1200px;
+      --pad:      clamp(24px, 5vw, 80px);
     }
 
     html { scroll-behavior: smooth; }
@@ -348,12 +350,147 @@
     .acc-content {
       padding: 4px 0 20px;
     }
+    /* ─── ANNOUNCEMENT BAR ───────────────────────────────── */
+    .topbar {
+      background: var(--ink);
+      color: rgba(255,255,255,0.75);
+      text-align: center;
+      font-size: 11.5px;
+      letter-spacing: 0.09em;
+      padding: 9px 20px;
+      font-family: var(--body);
+    }
+
+    /* ─── HEADER ─────────────────────────────────────────── */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      background: rgba(250,250,247,0.95);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .header-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 var(--pad);
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .logo {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.15;
+      flex-shrink: 0;
+    }
+    .logo-name {
+      font-family: var(--body);
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      color: var(--ink);
+      text-transform: uppercase;
+    }
+    .logo-sub {
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--light);
+      text-transform: uppercase;
+      margin-top: 1px;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+    nav a {
+      font-size: 12px;
+      letter-spacing: 0.09em;
+      color: var(--mid);
+      text-transform: uppercase;
+      transition: color 0.2s;
+      position: relative;
+    }
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -3px; left: 0;
+      width: 0; height: 1px;
+      background: var(--sage);
+      transition: width 0.25s var(--ease);
+    }
+    nav a:hover { color: var(--ink); }
+    nav a:hover::after { width: 100%; }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-shrink: 0;
+    }
+    .header-actions button {
+      background: none; border: none; cursor: pointer;
+      padding: 4px; color: var(--ink);
+      display: flex; align-items: center; gap: 5px;
+      font-size: 11px; letter-spacing: 0.06em; font-family: var(--body);
+      color: var(--mid);
+    }
+    .header-actions svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 1.4; }
+    @media (max-width: 768px) { nav { display: none; } }
   </style>
+  <link rel="stylesheet" href="/menu.css">
 </head>
 <body>
 
+  <!-- ANNOUNCEMENT BAR -->
+  <div class="topbar">
+    Free Calgary local delivery over $75 &nbsp;·&nbsp; Free shipping over $150 in Canada
+  </div>
 
+  <!-- HEADER -->
+  <header>
+    <div class="header-inner">
+      <a href="/" class="logo">
+        <span class="logo-name">Issa Green</span>
+        <span class="logo-sub">Japanese Organic Tea</span>
+      </a>
 
+      <nav>
+        <a href="/about">About</a>
+        <a href="/farmers">Farmers</a>
+        <a href="/tea-selection">Tea Selection</a>
+        <div class="nav-group">
+          <button type="button" class="nav-parent" aria-expanded="false" aria-haspopup="true">Shop</button>
+          <div class="nav-sub">
+            <a href="/shop-tea">Tea</a>
+            <a href="/tea-ware">Tea Ware</a>
+            <a href="#">Pottery</a>
+          </div>
+        </div>
+        <a href="#">Experiences</a>
+        <a href="#">Journal</a>
+        <a href="/location">Location</a>
+        <a href="/events">Events</a>
+      </nav>
+
+      <div class="header-actions">
+        <button aria-label="Language">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
+        </button>
+        <button aria-label="Cart (0 items)">
+          <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          <span>0</span>
+        </button>
+      </div>
+    </div>
+  </header>
 
   <!-- ══ SENCHA ══ -->
   <section class="tea-section">
@@ -714,5 +851,6 @@
       }
     }
   </script>
+  <script src="/menu.js"></script>
 </body>
 </html>
