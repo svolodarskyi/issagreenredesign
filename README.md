@@ -10,6 +10,7 @@ Static HTML site, migrating pieces to React where it makes sense.
 - `shop-tea.html`
 - `tea-ware.html`
 - `events.html`
+- `shipping.html` — shipping & returns policy
 - `products/*.html` — product detail pages (data in `window.PDP`, behaviour in `pdp.js`)
 - `order-confirmation.html` — Wix checkout return page (`?order=NUMBER` = confirmed)
 - `404.html`
