@@ -89,3 +89,8 @@ body.cart-open { overflow: hidden; }
   .cl-img { width: 72px; height: 72px; }
 }
 @media (prefers-reduced-motion: reduce) { .cart-drawer, .cart-overlay { transition: none; } }
+
+/* product cards on list pages link through to the product page */
+.card-link { display: block; color: inherit; }
+.product-name .card-link { display: inline; }
+.product-name .card-link:hover { color: var(--sage, #7A9B6E); }
