@@ -1,0 +1,16 @@
+name: dbt_smoke
+version: "1.0.0"
+config-version: 2
+profile: default   # ignored by dbt Cloud; used only if you run the CLI locally
+
+model-paths: ["models"]
+seed-paths: ["seeds"]
+test-paths: ["tests"]
+macro-paths: ["macros"]
+
+models:
+  dbt_smoke:
+    staging:
+      +materialized: view
+    marts:
+      +materialized: table

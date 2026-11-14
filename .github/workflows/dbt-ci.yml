@@ -1,0 +1,36 @@
+# Triggers a dbt Cloud CI job for the PR and waits for the result.
+# Required repo secrets: DBT_CLOUD_API_TOKEN, DBT_CLOUD_ACCOUNT_ID, DBT_CLOUD_CI_JOB_ID
+# Optional alternative: skip this workflow and use dbt Cloud's native
+# Git-triggered CI job (Deploy > Jobs > "Continuous integration").
+name: dbt CI
+on:
+  pull_request:
+    paths: ["dbt_smoke/**"]
+jobs:
+  dbt-cloud-ci:
+    runs-on: ubuntu-latest
+    env:
+      HOST: https://cloud.getdbt.com
+      ACCT: ${{ secrets.DBT_CLOUD_ACCOUNT_ID }}
+      JOB: ${{ secrets.DBT_CLOUD_CI_JOB_ID }}
+      TOKEN: ${{ secrets.DBT_CLOUD_API_TOKEN }}
+    steps:
+      - name: Trigger job
+        id: trigger
+        run: |
+          RUN_ID=$(curl -sf -X POST "$HOST/api/v2/accounts/$ACCT/jobs/$JOB/run/" \
+            -H "Authorization: Token $TOKEN" -H "Content-Type: application/json" \
+            -d '{"cause":"GitHub PR ${{ github.event.number }}","git_sha":"${{ github.event.pull_request.head.sha }}","github_pull_request_id":${{ github.event.number }}}' \
+            | python3 -c 'import sys,json;print(json.load(sys.stdin)["data"]["id"])')
+          echo "run_id=$RUN_ID" >> "$GITHUB_OUTPUT"
+      - name: Wait for result
+        run: |
+          for i in $(seq 1 120); do
+            S=$(curl -sf "$HOST/api/v2/accounts/$ACCT/runs/${{ steps.trigger.outputs.run_id }}/" \
+              -H "Authorization: Token $TOKEN" | python3 -c 'import sys,json;print(json.load(sys.stdin)["data"]["status"])')
+            echo "status=$S"
+            [ "$S" = 10 ] && exit 0
+            [ "$S" = 20 ] || [ "$S" = 30 ] && exit 1
+            sleep 15
+          done
+          exit 1
