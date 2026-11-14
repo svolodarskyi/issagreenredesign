@@ -10,6 +10,9 @@ Static HTML site, migrating pieces to React where it makes sense.
 - `shop-tea.html`
 - `tea-ware.html`
 - `events.html`
+- `order-confirmation.html` — Wix checkout return page (`?order=NUMBER` = confirmed)
+- `404.html`
+- `cart.js` / `cart.css` — cart drawer (localStorage for now; swap `store` and set `ISSA_CHECKOUT_URL` for Wix)
 - `workshops/wholelife-go-jan-9-1230.html`
 - `tea-selection.html`
 - `issa-tea-selection-beautiful.html`

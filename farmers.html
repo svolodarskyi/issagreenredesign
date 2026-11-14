@@ -449,6 +449,7 @@
     }
   </style>
   <link rel="stylesheet" href="/menu.css">
+  <link rel="stylesheet" href="/cart.css">
 </head>
 <body>
 
@@ -482,7 +483,13 @@
         <a href="/events">Events</a>
       </nav>
       <div class="header-actions">
-        <a href="/cart" style="font-size:12px; text-transform:uppercase; letter-spacing:0.09em;">Cart (0)</a>
+        <button aria-label="Language">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
+        </button>
+        <button aria-label="Cart (0 items)">
+          <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          <span>0</span>
+        </button>
       </div>
     </div>
   </header>
@@ -683,5 +690,6 @@
   </script>
 
   <script src="/menu.js"></script>
+  <script src="/cart.js"></script>
 </body>
 </html>
