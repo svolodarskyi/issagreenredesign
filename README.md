@@ -6,6 +6,16 @@ Static HTML site, migrating pieces to React where it makes sense.
 - `index.html` — homepage
 - `about.html`
 - `farmers.html`
+- `location.html`
+- `shop-tea.html`
+- `tea-ware.html`
+- `events.html`
+- `shipping.html` — shipping & returns policy
+- `products/*.html` — product detail pages (data in `window.PDP`, behaviour in `pdp.js`)
+- `order-confirmation.html` — Wix checkout return page (`?order=NUMBER` = confirmed)
+- `404.html`
+- `cart.js` / `cart.css` — cart drawer (localStorage for now; swap `store` and set `ISSA_CHECKOUT_URL` for Wix)
+- `workshops/wholelife-go-jan-9-1230.html`
 - `tea-selection.html`
 - `issa-tea-selection-beautiful.html`
 
