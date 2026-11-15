@@ -1,0 +1,19 @@
+version: 2
+
+seeds:
+  - name: raw_orders
+    columns:
+      - name: order_id
+        data_tests: [unique, not_null]
+
+models:
+  - name: stg_orders
+    columns:
+      - name: order_id
+        data_tests: [unique, not_null]
+      - name: amount
+        data_tests: [not_null]
+  - name: customer_revenue
+    columns:
+      - name: customer_id
+        data_tests: [unique, not_null]
